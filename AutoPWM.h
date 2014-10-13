@@ -21,8 +21,8 @@ class AutoPWM {
     uint8_t pwm;
   
     AutoPWM(uint8_t apin, uint16_t avoltLow, uint16_t avoltHigh, uint8_t apwmLow, uint8_t apwmHigh);
-    void autoPrescaler(uint8_t preserveMillis = 1);
-    void update(uint16_t volt);
+    void autoPrescaler(uint8_t excludeTimer0 = 1);
+    void update(uint16_t volt, uint8_t force = 0);
     void off();
   private:
 
