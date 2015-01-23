@@ -13,6 +13,12 @@ AutoPWM::AutoPWM(uint8_t apin, uint16_t avoltLow, uint16_t avoltHigh, uint8_t ap
   pinMode(this->pin, OUTPUT);
 }
 
+AutoPWM::AutoPWM(uint8_t apin) :
+  pin(apin), voltLow(0), voltHigh(0), pwmLow(0), pwmHigh(0), pwm(0)
+{
+  digitalWrite(this->pin, LOW);
+  pinMode(this->pin, OUTPUT);
+}
 
 void AutoPWM::autoPrescaler(uint8_t excludeTimer0) {
 #if defined( __AVR_ATmega328P__ )  
@@ -53,6 +59,10 @@ void AutoPWM::update(uint16_t volt, uint8_t force) {
   }
 }
 
+void AutoPWM::setPWM(uint8_t apwm) {
+  this->pwm = apwm;
+	analogWrite(this->pin, this->pwm);
+}
 
 void AutoPWM::off() {
   this->pwm = 0;
